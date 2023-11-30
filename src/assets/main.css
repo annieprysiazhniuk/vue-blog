@@ -1,0 +1,39 @@
+@import './base.css';
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 2fr 2fr 3fr;
+    grid-template-rows: 1fr 5fr 5fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      'header header header'
+      'sidebar main main'
+      'sidebar main main';
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  .sidebar {
+    grid-area: sidebar;
+  }
+
+  main {
+    grid-area: main;
+  }
+}
