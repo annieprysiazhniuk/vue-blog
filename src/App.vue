@@ -3,18 +3,25 @@ import CustomModal from '@/components/CustomModal.vue'
 import PostsList from '@/components/PostsList.vue'
 import CustomTitle from '@/components/CustomTitle.vue'
 import CustomButton from '@/components/CustomButton.vue'
+import CustomSelect from './components/CustomSelect.vue'
 export default {
   components: {
     CustomModal,
     PostsList,
     CustomTitle,
-    CustomButton
+    CustomButton,
+    CustomSelect,
   },
   data() {
     return {
       posts: [],
       isLoading: false,
-      isOpenModal: false
+      isOpenModal: false,
+      modelValue: '',
+      sortOptions: [
+        {value: 'title', name: 'Post title'},
+        {value: 'body', name: 'Post message'}
+      ]
     }
   },
   methods: {
@@ -50,6 +57,14 @@ export default {
   created() {
     this.getPosts()
   },
+
+  watch: {
+    modelValue(choosenSortOpt) {
+      this.posts.sort((post1, post2) => {
+        return post1[choosenSortOpt]?.localeCompare(post2[choosenSortOpt])
+      })
+    }
+  }
 }
 </script>
 
@@ -59,6 +74,7 @@ export default {
   <aside class="sidebar">
     <CustomTitle>Add a new post</CustomTitle>
     <CustomButton class="modal-button" @click="openModal">Add post</CustomButton>
+    <CustomSelect :options="sortOptions" v-model="modelValue"></CustomSelect>
     <CustomModal :isOpenModal="isOpenModal" @closeModal="closeModal" @create="addPost"></CustomModal>
   </aside>
   <main>
@@ -70,6 +86,11 @@ export default {
 <style scoped>
 main {
   margin: 0 auto 50px 50px;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
 }
 .loading {
   position: fixed;
