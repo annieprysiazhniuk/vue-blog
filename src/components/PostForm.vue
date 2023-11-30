@@ -1,6 +1,6 @@
 <script>
 import CustomButton from '@/components/CustomButton.vue'
-import CustomInput from './CustomInput.vue'
+import CustomInput from '@/components/CustomInput.vue'
 export default {
   components: {
     CustomButton,
@@ -41,7 +41,6 @@ export default {
 
 <style scoped>
 form {
-  /* margin-bottom: 40px; */
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 3px;

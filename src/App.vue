@@ -3,7 +3,8 @@ import CustomModal from '@/components/CustomModal.vue'
 import PostsList from '@/components/PostsList.vue'
 import CustomTitle from '@/components/CustomTitle.vue'
 import CustomButton from '@/components/CustomButton.vue'
-import CustomSelect from './components/CustomSelect.vue'
+import CustomSelect from '@/components/CustomSelect.vue'
+import CustomInput from '@/components/CustomInput.vue'
 export default {
   components: {
     CustomModal,
@@ -11,6 +12,7 @@ export default {
     CustomTitle,
     CustomButton,
     CustomSelect,
+    CustomInput,
   },
   data() {
     return {
@@ -21,7 +23,8 @@ export default {
       sortOptions: [
         {value: 'title', name: 'Post title'},
         {value: 'body', name: 'Post message'}
-      ]
+      ],
+      searchQuery: '',
     }
   },
   methods: {
@@ -64,6 +67,12 @@ export default {
         return post1[choosenSortOpt]?.localeCompare(post2[choosenSortOpt])
       })
     }
+  },
+
+  computed: {
+    searchedPosts() {
+      return this.posts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+    }
   }
 }
 </script>
@@ -75,11 +84,12 @@ export default {
     <CustomTitle>Add a new post</CustomTitle>
     <CustomButton class="modal-button" @click="openModal">Add post</CustomButton>
     <CustomSelect :options="sortOptions" v-model="modelValue"></CustomSelect>
+    <CustomInput v-model:title="searchQuery" placeholder="Search..." class="search"></CustomInput>
     <CustomModal :isOpenModal="isOpenModal" @closeModal="closeModal" @create="addPost"></CustomModal>
   </aside>
   <main>
     <CustomTitle>List of posts</CustomTitle>
-    <PostsList :posts="posts" :isOpenModal="isOpenModal" @delete="deletePost"></PostsList>
+    <PostsList :posts="searchedPosts" :isOpenModal="isOpenModal" @delete="deletePost"></PostsList>
   </main>
 </template>
 
@@ -104,9 +114,13 @@ aside {
 }
 
 .modal-button {
-  width: 200px;
+  width: 250px;
   min-height: 46px;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.search {
+  max-width: 250px;
 }
 </style>

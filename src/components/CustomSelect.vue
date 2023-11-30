@@ -25,7 +25,7 @@ function changeSelect(event) {
 
 <style scoped>
 select {
-    max-width: 200px;
+    max-width: 250px;
     margin: 20px 0;
     min-height: 40px;
 }
