@@ -10,13 +10,12 @@ defineProps({
 
 const emit = defineEmits(['closeModal', 'create'])
 function closeModal() {
-  emit('closeModal', false);
+  emit('closeModal', false)
 }
 
 function addPost(id) {
-    emit('create', id);
+  emit('create', id)
 }
-
 </script>
 
 <template>

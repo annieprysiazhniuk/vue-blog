@@ -39,11 +39,11 @@ strong {
   min-width: 85px;
 }
 .btn-delete {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .actions-container {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 }
 </style>

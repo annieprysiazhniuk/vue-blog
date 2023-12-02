@@ -4,13 +4,13 @@ import CustomInput from '@/components/CustomInput.vue'
 export default {
   components: {
     CustomButton,
-    CustomInput,
+    CustomInput
   },
   data() {
     return {
       title: '',
       placeholder: 'Post title',
-      body: '',
+      body: ''
     }
   },
   methods: {
